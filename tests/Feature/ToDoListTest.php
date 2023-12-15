@@ -100,4 +100,14 @@ class ToDoListTest extends TestCase
             'name' => $update_name,
         ]);
     }
+
+    public function test_while_updating_todo_list_is_name_field_required()
+    {
+
+        $this->withExceptionHandling();
+
+        $this->patchJson(route('todo-list.update', $this->list->id))
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['name']);
+    }
 }
