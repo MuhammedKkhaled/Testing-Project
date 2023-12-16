@@ -40,7 +40,8 @@ class ItemTest extends TestCase
     {
         $task = Task::factory()->create();
 
-        $this->deleteJson(route('tasks.destroy', $task->id));
+        $this->deleteJson(route('tasks.destroy', $task->id))
+                    ->assertNoContent();
 
         $this->assertDatabaseMissing('tasks', ['title' => $task->title]);
     }

@@ -21,4 +21,10 @@ class TaskController extends Controller
         return response($task, Response::HTTP_CREATED);
     }
 
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return response(["Message" => "deleted Successfully"], Response::HTTP_NO_CONTENT);
+    }
 }
